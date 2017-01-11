@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+function _k8s_profile {
+  local shome="${_k8s_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+  PATH="$shome/vendor/kubernetes/server/bin:$PATH"
+}
+
+_k8s_profile
