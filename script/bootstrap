@@ -8,7 +8,7 @@ function main {
 
   case "$(uname -s)" in
     Linux)
-      aptitude install -y ebtables ethtool socat
+      sudo aptitude install -y ebtables ethtool socat
 
       local url_server="url_server_$(uname -s)"
       local fnm_server="$(basename "${!url_server}")"
