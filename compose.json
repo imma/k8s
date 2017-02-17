@@ -1,0 +1,52 @@
+{
+  "version": "2.1",
+  "networks": {
+    "default": {
+      "external": {
+        "name": "admin_default"
+      }
+    }
+  },
+  "services": {
+    "flannel": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}"
+      ],
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "networks": {
+        "default": {
+          "ipv4_address": "${NET_PREFIX}.16"
+        }
+      },
+      "dns_search": "node.consul",
+      "image": "${BLOCK_REGISTRY}/block:flannel",
+      "hostname": "flannel"
+    },
+    "k8s": {
+      "volumes": [
+        "/data:/data",
+        "/config:/config"
+      ],
+      "ports": [
+        "${BLOCK_SSH_PORT}"
+      ],
+      "cap_add": [
+        "NET_ADMIN"
+      ],
+      "networks": {
+        "default": {
+          "ipv4_address": "${NET_PREFIX}.17"
+        }
+      },
+      "dns_search": "node.consul",
+      "image": "${BLOCK_REGISTRY}/block:k8s",
+      "hostname": "k8s"
+    }
+  }
+}
