@@ -1,5 +1,6 @@
 {
   "require": [
-    "kubernetes"
+    "kubernetes",
+    [ "etcd", "flannel" ]
   ]
 }
