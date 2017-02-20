@@ -14,8 +14,8 @@ function main {
       local fnm_server="$(basename "${!url_server}")"
       cache curl "$fnm_server" "${!url_server}"
 
-      mkdir -p "$shome/vendor"
-      pushd "$shome/vendor"
+      mkdir -p "$shome/vendor/k8s-${KUBERNETES_VERSION}"
+      pushd "$shome/vendor/k8s-${KUBERNETES_VERSION}"
       tar xvfz "${BASEBOX_CACHE}/curl/$fnm_server"
       popd
       ;;

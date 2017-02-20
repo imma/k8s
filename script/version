@@ -4,8 +4,8 @@ function version {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local ver_kubernetes="$(kubectl version --client 2>/dev/null | perl -pe 's{.*?GitVersion:"v([^"-]+).*$}{$1}')"
-  jq -n --arg kubernetes "$ver_kubernetes" '{kubernetes: $kubernetes}'
+  local ver_k8s="$(kubelet --version 2>/dev/null | awk '{print $2}' | perl -pe 's{^v}{}' || true)"
+  jq -n --arg k8s "$ver_k8s" '{k8s: $k8s}'
 }
 
 version "$@"
