@@ -11,7 +11,7 @@ function main {
       sudo aptitude install -y ebtables ethtool socat
 
       local url_server="url_server_$(uname -s)"
-      local fnm_server="$(basename "${!url_server}")"
+      local fnm_server="${KUBERNETES_VERSION}-$(basename "${!url_server}")"
       cache curl "$fnm_server" "${!url_server}"
 
       mkdir -p "$shome/vendor/k8s-${KUBERNETES_VERSION}"
