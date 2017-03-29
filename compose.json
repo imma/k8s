@@ -8,7 +8,7 @@
     }
   },
   "services": {
-    "admin": {
+    "k8s": {
       "environment": [
         "SERVICE_2222_NAME=ssh"
       ],
