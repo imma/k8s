@@ -3,12 +3,16 @@
   "networks": {
     "default": {
       "external": {
-        "name": "admin_default"
+        "name": "ubuntu_default"
       }
     }
   },
   "services": {
     "k8s": {
+    "admin": {
+      "environment": [
+        "SERVICE_2222_NAME=ssh"
+      ],
       "volumes": [
         "/data:/data",
         "/config:/config"
