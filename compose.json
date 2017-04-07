@@ -9,7 +9,6 @@
   },
   "services": {
     "k8s": {
-    "admin": {
       "environment": [
         "SERVICE_2222_NAME=ssh"
       ],
@@ -25,10 +24,10 @@
       ],
       "networks": {
         "default": {
-          "ipv4_address": "${NET_PREFIX}.16"
+          "ipv4_address": "${NET_PREFIX}.18"
         }
       },
-      "dns_search": "node.consul",
+      "dns_search": "node.dc1.consul",
       "image": "${BLOCK_REGISTRY}/block:k8s",
       "hostname": "k8s"
     }
