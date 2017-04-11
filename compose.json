@@ -10,7 +10,6 @@
   "services": {
     "k8s": {
       "environment": [
-        "SERVICE_2222_NAME=ssh"
       ],
       "volumes": [
         "/data:/data",
@@ -22,14 +21,8 @@
       "cap_add": [
         "NET_ADMIN"
       ],
-      "networks": {
-        "default": {
-          "ipv4_address": "${NET_PREFIX}.18"
-        }
-      },
-      "dns_search": "node.dc1.consul",
-      "image": "${BLOCK_REGISTRY}/block:k8s",
-      "hostname": "k8s"
+      "dns_search": "node.dc1.consul service.dc1.consul",
+      "image": "${BLOCK_REGISTRY}/block:k8s"
     }
   }
 }
