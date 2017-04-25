@@ -18,6 +18,10 @@ function main {
       pushd "$shome/vendor/k8s-${KUBERNETES_VERSION}"
       tar xvfz "${BASEBOX_CACHE}/curl/$fnm_server"
       popd
+
+      (cd "$shome/bin" && ../vendor/k8s-1.6.2/kubernetes/server/bin/hyperkube --make-symlinks)
+      (set +f; rm -f "$shome/vendor/k8s-${KUBERNETES_VERSION}"/server/bin/*.tar)
+
       ;;
   esac
 }
