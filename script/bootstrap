@@ -21,7 +21,7 @@ function main {
 
       mv "$shome/vendor/k8s-${KUBERNETES_VERSION}/kubernetes/server/bin/hyperkube" "$shome/bin/"
       (cd "$shome/bin" && ./hyperkube --make-symlinks)
-      rm -f "$shome/vendor/k8s-${KUBERNETES_VERSION}"
+      rm -rf "$shome/vendor/k8s-${KUBERNETES_VERSION}"
       ;;
   esac
 }
