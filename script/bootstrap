@@ -19,7 +19,7 @@ function main {
       tar xvfz "${BASEBOX_CACHE}/curl/$fnm_server"
       popd
 
-      mv "$shome/vendor/k8s-${KUBERNETES_VERSION}"/server/bin/hyperkube "$shome/bin/"
+      mv "$shome/vendor/k8s-${KUBERNETES_VERSION}/kubernetes/server/bin/hyperkube" "$shome/bin/"
       (cd "$shome/bin" && ./hyperkube --make-symlinks)
       rm -f "$shome/vendor/k8s-${KUBERNETES_VERSION}"
       ;;
