@@ -4,22 +4,23 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local url_server_Linux="https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-server-linux-amd64.tar.gz"
+  local url_client_Linux="https://storage.googleapis.com/kubernetes-release-${KUBERNETES_RELEASE}/release/v${KUBERNETES_VERSION}/kubernetes-client-linux-amd64.tar.gz"
+  local url_client_Darwin="https://storage.googleapis.com/kubernetes-release-${KUBERNETES_RELEASE}/release/v${KUBERNETES_VERSION}/kubernetes-client-darwin-amd64.tar.gz"
 
   case "$(uname -s)" in
     Linux)
       sudo aptitude install -y ebtables ethtool socat
-
-      local url_server="url_server_$(uname -s)"
-      local fnm_server="${KUBERNETES_VERSION}-$(basename "${!url_server}")"
-      cache curl "$fnm_server" "${!url_server}"
-
-      mkdir -p "$shome/vendor/k8s-${KUBERNETES_VERSION}"
-      pushd "$shome/vendor/k8s-${KUBERNETES_VERSION}"
-      tar xvfz "${BASEBOX_CACHE}/curl/$fnm_server"
-      popd
       ;;
   esac
+
+  local url_client="url_client_$(uname -s)"
+  local fnm_client="${KUBERNETES_VERSION}-$(basename "${!url_client}")"
+  cache curl "$fnm_client" "${!url_client}"
+
+  mkdir -p "$shome/vendor/k8s-${KUBERNETES_VERSION}"
+  pushd "$shome/vendor/k8s-${KUBERNETES_VERSION}"
+  tar xvfz "${BASEBOX_CACHE}/curl/$fnm_client"
+  popd
 }
 
 main "$@"
