@@ -5,6 +5,7 @@ function main {
   source "$shome/script/profile"
 
   local url_server_Linux="https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-server-linux-amd64.tar.gz"
+  local url_node_Linux="https://dl.k8s.io/v${KUBERNETES_VERSION}/kubernetes-node-linux-amd64.tar.gz"
 
   case "$(uname -s)" in
     Linux)
@@ -17,6 +18,15 @@ function main {
       mkdir -p "$shome/vendor/k8s-${KUBERNETES_VERSION}"
       pushd "$shome/vendor/k8s-${KUBERNETES_VERSION}"
       tar xvfz "${BASEBOX_CACHE}/curl/$fnm_server"
+      popd
+
+      local url_node="url_node_$(uname -s)"
+      local fnm_node="${KUBERNETES_VERSION}-$(basename "${!url_node}")"
+      cache curl "$fnm_node" "${!url_node}"
+
+      mkdir -p "$shome/vendor/k8s-${KUBERNETES_VERSION}"
+      pushd "$shome/vendor/k8s-${KUBERNETES_VERSION}"
+      tar xvfz "${BASEBOX_CACHE}/curl/$fnm_node"
       popd
       ;;
   esac
